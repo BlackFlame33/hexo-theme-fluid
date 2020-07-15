@@ -1,5 +1,16 @@
 <footer class="mt-5">
   <div class="text-center py-3">
+    <div id="dark" onclick="switchDarkMode()"></div>
+    <script>
+      var isNight = new Date().getHours() >= 22 || new Date().getHours() < 7; // 指定时间
+      // 依次判断 系统暗黑模式 指定时间 缓存 dark
+      if (matchMedia('(prefers-color-scheme: dark)').matches || isNight || localStorage.getItem('dark') === '1') {
+        if (!(isNight && localStorage.getItem('noDark') === '1')) {
+          document.body.classList.add('dark');
+        }
+      }
+      document.getElementById('dark').innerHTML = document.querySelector("body").classList.contains("dark") ? "🌙" : "🌞";
+    </script>
     <div>
       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
       <i class="iconfont icon-love"></i>
@@ -9,10 +20,44 @@
     <%- partial('_partial/statistics.ejs') %>
     <%- partial('_partial/beian.ejs') %>
     <% if(theme.web_analytics.cnzz) { %>
-      <!-- cnzz Analytics Icon -->
-      <span id="cnzz_stat_icon_<%- theme.web_analytics.cnzz %>" style="display: none"></span>
+    <!-- cnzz Analytics Icon -->
+    <span id="cnzz_stat_icon_<%- theme.web_analytics.cnzz %>" style="display: none"></span>
     <% } %>
+
+    <!-- 网站运行时间统计  -->
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+        var now = new Date();
+        function createtime() {
+          var grt = new Date("09/26/2019 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime() + 250);
+          days = (now - grt) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours)
+          if (String(hnum).length == 1) {
+            hnum = "0" + hnum;
+          }
+          minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if (String(mnum).length == 1) {
+            mnum = "0" + mnum;
+          }
+          seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if (String(snum).length == 1) {
+            snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp" + dnum + "&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+        }
+        setInterval("createtime()", 250);
+      </script>
+    </div>
   </div>
+
 </footer>
 
 <!-- SCRIPTS -->
