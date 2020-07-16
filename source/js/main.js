@@ -1,18 +1,3 @@
-//夜间模式🌗点击事件
-function switchDarkMode() {
-  if ($('body').hasClass('dark')) {
-    $("#dark").html("🌞");
-    document.body.classList.remove('dark');
-    localStorage.setItem('noDark', '1');
-    localStorage.setItem('dark', '0');
-  } else {
-    $("#dark").html("🌙");
-    document.body.classList.add('dark');
-    localStorage.setItem('dark', '1');
-    localStorage.setItem('noDark', '0');
-  }
-}
-
 // 监听滚动事件
 function listenScroll(callback) {
   // eslint-disable-next-line no-undef

@@ -1,21 +1,12 @@
 <footer class="mt-5">
   <div class="text-center py-3">
-    <div id="dark" onclick="switchDarkMode()"></div>
-    <script>
-      var isNight = new Date().getHours() >= 22 || new Date().getHours() < 7; // 指定时间
-      // 依次判断 系统暗黑模式 指定时间 缓存 dark
-      if (matchMedia('(prefers-color-scheme: dark)').matches || isNight || localStorage.getItem('dark') === '1') {
-        if (!(isNight && localStorage.getItem('noDark') === '1')) {
-          document.body.classList.add('dark');
-        }
-      }
-      document.getElementById('dark').innerHTML = document.querySelector("body").classList.contains("dark") ? "🌙" : "🌞";
-    </script>
     <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <!-- <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> -->
+      <i class="iconfont icon-code"></i>
+      with
       <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+      by <a href="https://github.com/BlackFlame33" target="_blank" rel="nofollow noopener"><span>BlackFlame33</span></a>
+      <!-- <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>-->
     </div>
     <%- partial('_partial/statistics.ejs') %>
     <%- partial('_partial/beian.ejs') %>
