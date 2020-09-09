@@ -20,7 +20,7 @@
   <a title="GitHub Forks" target="_blank" href="https://github.com/fluid-dev/hexo-theme-fluid/network/members"><img alt="GitHub Forks" src="https://img.shields.io/github/forks/fluid-dev/hexo-theme-fluid.svg?label=Forks&style=social"></a>  
 </p>
 
-<p align="center"><a title="Chinese" href="README.md">中文简体</a>  |  English</p>
+<p align="center"><a title="Chinese" href="README.md">🇨🇳 中文简体</a>  |  🇬🇧 English</p>
 
 <p align="center">
   <span>Docs：</span>
@@ -40,11 +40,23 @@
 
 If you don't have a hexo blog, please follow [Hexo Docs](https://hexo.io/docs/) to install and initialize your blog。
 
-#### 2. Download Theme
+#### 2. Download Fluid
+
+**Way A:**
 
 Please download the [latest release](https://github.com/fluid-dev/hexo-theme-fluid/releases) first, or the master branch can't guarantee stability.
 
 After downloading, extract it to the themes directory and rename it to `fluid`.
+
+**Way B:**
+
+If your Hexo version >= 5.0.0, you can be installed through npm:
+
+```sh
+npm install --save hexo-theme-fluid
+```
+
+Then create `_config.fluid.yml` in the blog directory and copy the content of [_config.yml](https://github.com/fluid-dev/hexo-theme-fluid/blob/release/_config.yml)
 
 #### 3. Set theme
 
@@ -54,7 +66,7 @@ Edit `_config.yml` in the blog root directory as follows:
 theme: fluid
 ```
 
-#### 4. Create About Page
+#### 4. Create about page
 
 The about page needs to be created manually:
 
@@ -66,7 +78,7 @@ Then edit `/source/about/index.md` and add `layout` attribute.
 
 The modified example is as follows:
 
-```yml
+```yaml
 ---
 title: about
 date: 2020-02-23 19:20:33
@@ -105,6 +117,6 @@ English docs translator：[@EatRice](https://eatrice.top/) [@橙子杀手](https
 
 Contributors outside PR：[@zhugaoqi](https://github.com/zhugaoqi) [@julydate](https://github.com/julydate)
 
-## Star trending
+## Star Trending
 
 [![Stargazers over time](https://starchart.cc/fluid-dev/hexo-theme-fluid.svg)](https://starchart.cc/fluid-dev/hexo-theme-fluid)
