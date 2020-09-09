@@ -19,11 +19,17 @@ title_join_string: ' - '  # 浏览器标签页中的标题分隔符，效果： 
 
 force_https: false  # 强制所有链接升级为 HTTPS（适用于图片等资源出现 HTTP 混入报错）
 
-highlight: # 代码高亮
-  enable: true
-  style: 'Github Gist'  # 高亮样式见：https://highlightjs.org/static/demo/  在页面挑选 style 填入
-  bg_color: false  # 是否根据 style 改变代码背景色，**如果 style 是深色背景别忘了开启此项**
+code:  # 代码块相关的配置
   copy_btn: true  # 是否开启复制代码的按钮
+  highlight:  # 代码高亮
+    enable: true
+    lib: 'highlightjs'  # 实现高亮的库，可选：highlightjs | prismjs，对应下面的配置项
+    highlightjs:
+      style: 'Github Gist'  # 高亮样式见：https://highlightjs.org/static/demo/  在页面挑选 style 填入
+      bg_color: false  # 是否根据 style 改变代码背景色，**如果 style 是深色背景别忘了开启此项**
+    prismjs:
+      style: 'default'  # 高亮样式见：https://prismjs.com/  在页面右侧的圆形按钮挑选 style 填入，也可以直接填入 css 链接
+      preprocess: true  # 设为 true 高亮将本地静态生成（并只支持部分 prismjs 插件），设为 false 高亮将在浏览器通过 js 生成
 
 fun_features: # 一些好玩的功能
   typing: # 为 subtitle 添加打字机效果
@@ -43,7 +49,7 @@ fun_features: # 一些好玩的功能
 
 dark_mode:   # 主题暗色模式，开启后菜单中会出现切换按钮，用户浏览器会存储切换选项，并且会遵循 prefers-color-scheme 自动切换
   enable: true
-  default: auto  # 默认的模式，可选：auto | light | dark，若用户浏览器没有存储切换选项，则使用默认值，auto 则在用户本地时间 18 点后进入暗色模式
+  default: auto  # 默认的模式：auto | light | dark，选择 auto 时优先遵循 prefers-color-scheme，其次按用户本地时间 18 点到次日 6 点之间进入暗色模式，**注意：当用户手动切换后则不再按照默认模式**
 
 color:  # 主题颜色配置，不一定能每一处都生效，可能会被局部样式覆盖，这种情况建议用自定义 css 解决。配色可以在这获得启发： https://www.webdesignrankings.com/resources/lolcolors/
   body_bg_color: "#eee"             # body 背景色
@@ -80,14 +86,14 @@ custom_html: ''  # 自定义底部 HTML 内容（位于 footer 上方），也�
 
 web_analytics:  # 网页访问统计
   enable: false
-  baidu:  # 百度统计的Key，参见 https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376 代码获取中 hm.js? 后边的字符串
-  google:  # Google统计的Tracking ID，参见 https://analytics.google.com/analytics/web/
-  tencent:  # 腾讯统计的H5 App id，参见 https://mta.qq.com/h5/manage/ctr_app_manage (开启高级功能才有cid)
+  baidu:  # 百度统计的 Key，参见 https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376 代码获取中 hm.js? 后边的字符串
+  google:  # Google 统计的 Tracking ID，参见 https://analytics.google.com/analytics/web/
+  gtag:  # Google gtag.js 的媒体资源 ID，参见 https://analytics.google.com/analytics/web/ 中的 管理 -> 媒体资源设置 -> 跟踪 ID
+  tencent:  # 腾讯统计的 H5 App id，参见 https://mta.qq.com/h5/manage/ctr_app_manage (开启高级功能才有cid)
     sid:
     cid:
-  tajs:   # 腾讯统计早期版站点统计sID，参见 https://ta.qq.com/#/site/list
-  woyaola:  # 51.la站点统计ID，参见 https://www.51.la/user/site/index
-  cnzz:  # 友盟/cnzz站点统计web_id，参见 https://web.umeng.com/main.php?c=site&a=show
+  woyaola:  # 51.la 站点统计 ID，参见 https://www.51.la/user/site/index
+  cnzz:  # 友盟/cnzz 站点统计 web_id，参见 https://web.umeng.com/main.php?c=site&a=show
   leancloud:  # LeanCloud 计数统计，可用于 PV UV 展示，如果 web_analytics.enable 没有开启，PV UV 展示只会查询，不会增加
     app_id:
     app_key:
@@ -99,7 +105,7 @@ lazyload: # 对页面中的图片进行懒加载处理，可见范围外的图�
 
 daovoice:  # 在线客服 Daovoice 参考：http://dashboard.daovoice.io
   enable: false # 是否开启在线客服聊天
-  appid: ''  # 应用ID设置
+  appid: ''  # 应用 ID 设置
 
 aplayer:  # 音乐播放器，注意不能与 hexo-tag-aplayer 插件共用
   enable: false
@@ -123,7 +129,7 @@ navbar:
   ground_glass:  # 导航栏毛玻璃特效，实验性功能，可能会造成页面滚动掉帧和抖动，部分浏览器不支持会自动不生效
     enable: false
     px: 3  # 模糊像素，只能为数字，数字越大模糊度越高
-    alpha: 0.7   # 透明度，只能为数字，范围0~1，数字越大透明度越低，注意透明过度可能看不清菜单字体
+    alpha: 0.7   # 透明度，只能为数字，范围 0~1，数字越大透明度越低，注意透明过度可能看不清菜单字体
   menu:  # 可自行增减，key 用来关联 languages/*.yml，如不存在关联则显示 key 本身的值；icon 是 css class，可以省略；增加 name 可以强制显示指定名称
     - { key: 'home', link: '/', icon: 'iconfont icon-home-fill' }
     - { key: 'archive', link: '/archives/', icon: 'iconfont icon-archive-fill' }
@@ -204,7 +210,9 @@ post:  # 部分配置同时控制自定义页面，注意备注
   banner_img_height: 70  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
   meta:  # 文章标题下方的信息
-    date:  # 文章日期
+    author:  # 作者，优先根据 front-matter 里 author 字段，其次是 hexo 配置中 author 值
+      enable: false
+    date:  # 文章日期，优先根据 front-matter 里 date 字段，其次是 md 文件日期
       enable: true
       format: "LL a"  # 格式参照 ISO-8601 日期格式化，可参照 http://momentjs.cn/docs/#/parsing/string-format/
     wordcount:  # 字数统计
@@ -249,7 +257,7 @@ post:  # 部分配置同时控制自定义页面，注意备注
     options: { theme: 'default' }  # 接口选项，具体可见：http://mermaid-js.github.io/mermaid/#/mermaidAPI
   comments:  # 评论
     enable: false  # 开启评论
-    type: disqus  # 指定使用的评论模块  available: disqus | valine | gitalk | utterances | changyan | livere  推荐 utterances
+    type: disqus  # 指定使用的评论模块  available: disqus | valine | gitalk | utterances | changyan | livere | remark42
 
 
 #---------------------------
@@ -266,6 +274,7 @@ utterances:
   issue_term: pathname
   label: utterances
   theme: github-light
+  theme_dark: github-dark
   crossorigin: anonymous
 
 # Disqus
@@ -321,6 +330,13 @@ changyan:
 livere:
   uid: ''
 
+# Remark42
+# https://remark42.com/
+remark42:
+  host: https://remark.haoyizebo.com
+  site_id: haoyizebo
+  max_shown_comments: 10
+  locale: zh
 
 #---------------------------
 # 归档页
@@ -343,6 +359,7 @@ category:
   subtitle:  # 打字机内容
   post_limit: 10  # 单个分类中折叠展示文章数的最大值，超过限制会显示 More
   order_by: '-length'  # 排序字段，前面带减号是倒序，不带减号是正序，可选项：name | length
+  collapse_depth: 0  # 层级的折叠深度，0 是全部折叠，大于 0 后如果存在子分类则默认展开
 
 #---------------------------
 # 标签归档页
